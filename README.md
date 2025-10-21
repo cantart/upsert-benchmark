@@ -1,2 +1,24 @@
 # upsert-benchmark
-Exploring how indexing and batching impact upsert performance.
+
+This repo explores different strategies to upsert large datasets efficiently into a database, without knowing the database schema at development time.
+
+## 🧠 Strategies I am exploring
+
+1. **Naive Upsert**
+   - No indexing  
+   - Loop through each row → check → insert or update
+   - Consumes a lot of CPU and memory
+
+2. **Hash Index Upsert**  
+   - Use hash key as unique identifier  
+   - Enable fast conflict detection via index
+
+3. **Batching + Hash Index Upsert**  
+   - Upsert in chunks to reduce memory usage and transaction cost
+
+## 📊 How to run benchmark
+
+Run:
+```bash
+go test -bench=.
+```
